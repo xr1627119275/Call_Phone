@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText editText;
     private Button button;
+    private Button bt_ToMain2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView(){
         editText=(EditText) findViewById(R.id.editText2);
         button=(Button)findViewById(R.id.button1);
+        bt_ToMain2=(Button)findViewById(R.id.button_ToMain2);
     }
     private void permission(){
         Acp.getInstance(this).request(new AcpOptions.Builder()
@@ -65,6 +69,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.setData(Uri.parse("tel:"+tel));
                 startActivity(intent);
                 Toast.makeText(MainActivity.this,"正在拨打电话",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.button_ToMain2:
+                Intent intent1=new Intent(MainActivity.this,Main2Activity.class);
+                startActivity(intent1);
+                finish();
+                break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.add_item:
+                Toast.makeText(MainActivity.this,"添加",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.remove_item:
+                Toast.makeText(MainActivity.this,"删除",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

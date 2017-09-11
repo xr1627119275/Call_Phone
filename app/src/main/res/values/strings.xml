@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Miss_You</string>
     <string name="call">拨号</string>
+    <string name="toMain2">跳转到活动2</string>
 </resources>
